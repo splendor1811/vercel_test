@@ -14,7 +14,7 @@ export const TASKS = {
       'portion: S (nhỏ hơn suất thường), M (suất thường), L (lớn hơn). count: số cái/cuốn/ổ nếu món đếm được, còn lại 1. ' +
       'confidence 0–1 trung thực; alternatives = tối đa 3 id khác dễ nhầm. Thành phần vốn thuộc một món thì gộp (bún + chả + nước chấm + rau = Bún chả), ' +
       'nhưng món ăn kèm gọi riêng (nem rán, quẩy, trứng ốp thêm, chả giò, đồ uống rõ ràng) là mục riêng. ' +
-      'Bỏ qua đồ uống không rõ, gia vị, bát nước chấm riêng. Ảnh không có món ăn: items rỗng, note giải thích ngắn. note ≤ 20 chữ, tiếng Việt.',
+      'Bỏ qua đồ uống không rõ, gia vị, bát nước chấm riêng. Ảnh không có món ăn: items rỗng, note giải thích ngắn. note ≤ 20 chữ, tiếng Việt có dấu.',
     schema: {
       name: 'meal',
       schema: {
@@ -50,7 +50,7 @@ export const TASKS = {
     maxTokens: 1200,
     reasoning: 'low',
     system:
-      'Bạn là chuyên gia dinh dưỡng nói tiếng Việt, giọng thân thiện, thực tế. Input là bữa ăn (món, kcal tính sẵn) và nhu cầu ngày. ' +
+      'Bạn là chuyên gia dinh dưỡng, viết tiếng Việt CÓ DẤU đầy đủ, giọng thân thiện, thực tế. Input là bữa ăn (món, kcal tính sẵn) và nhu cầu ngày. ' +
       'Đưa tối đa 3 gợi ý ngắn (≤ 22 chữ mỗi gợi ý), cụ thể bằng món/thói quen Việt (thêm rau, bớt nước béo, đổi đồ uống…). ' +
       'Không chẩn đoán bệnh, không khuyên ăn dưới 1.200 kcal/ngày, không chê ngoại hình. Không lặp lại số kcal đã có. ' +
       'swap: một gợi ý đổi món tương đương nhẹ hơn chỉ dùng tên món có trong input "Danh sách món", hoặc null.',

@@ -10,7 +10,9 @@ import { MOCK, mockStream } from './_lib/mock.js';
 export const config = { maxDuration: 60 }; // Hobby: mặc định = tối đa = 300 s; đặt 60 cho đỡ treo
 
 const KEY = process.env.PRODUCT_GATEWAY_KEY || process.env.GATEWAY_KEY || '';
-const BASE = (process.env.GATEWAY_BASE_URL || 'https://api.thucchien.ai').replace(/\/+$/, '').replace(/\/v1$/, '');
+const BASE = (process.env.GATEWAY_BASE_URL || 'https://api.thucchien.ai').replace(/\/+$/, '');
+// LiteLLM/Gateway: <base>/v1/chat/completions. URL đã có phiên bản (…/v1, …/v1beta/openai của Google) thì giữ nguyên.
+const CHAT_URL = /\/v\d[\w]*(\/openai)?$/.test(BASE) ? `${BASE}/chat/completions` : `${BASE}/v1/chat/completions`;
 const IS_MOCK = process.env.MOCK === '1' || !KEY;
 const FALLBACK = process.env.FALLBACK_MOCK === '1';
 const MAX_BODY = 4_000_000; // Vercel chặn ở 4.5 MB (413 FUNCTION_PAYLOAD_TOO_LARGE) → tự chặn sớm với lỗi dễ hiểu
@@ -125,7 +127,7 @@ export default {
 
     let up;
     try {
-      up = await fetch(`${BASE}/v1/chat/completions`, {
+      up = await fetch(CHAT_URL, {
         method: 'POST',
         headers: { authorization: `Bearer ${KEY}`, 'content-type': 'application/json' },
         body: JSON.stringify(payload),
