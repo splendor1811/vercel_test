@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đĩa Việt — chụp món Việt, biết ngay bao nhiêu calo</title>
+  <meta name="description" content="Chụp hoặc tải ảnh bữa ăn món Việt, AI nhận món, kcal tính theo bảng dinh dưỡng có nguồn, sửa được từng món.">
+  <meta name="theme-color" content="#F4F7F1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+  <a class="skip" href="#cong-cu">Bỏ qua tới công cụ</a>
+  <header class="top container">
+    <a class="brand" href="/" aria-label="Đĩa Việt — trang chủ">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="16" r="8" fill="var(--accent)"/></svg>
+      Đĩa Việt
+    </a>
+    <nav aria-label="Chính"><a href="#nhat-ky">Hôm nay</a><a href="#cach-tinh">Cách tính</a></nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="cong-cu">
+      <div class="hero-copy">
+        <h1>Chụp món Việt,<br>biết ngay calo.</h1>
+        <p class="lead">AI nhận món trong ảnh, còn số calo tính theo bảng dinh dưỡng có nguồn. Món nào sai thì sửa ngay.</p>
+
+        <div class="actions">
+          <label class="btn btn-lg" for="file">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            Chụp hoặc tải ảnh
+          </label>
+          <input id="file" class="sr-only" type="file" accept="image/*" capture="environment">
+        </div>
+
+        <p class="samples-label">Hoặc thử với ảnh mẫu</p>
+        <ul class="samples" id="samples" aria-label="Ảnh mẫu"></ul>
+      </div>
+
+      <figure class="stage" id="stage" data-state="idle" aria-live="polite">
+        <div class="plate">
+          <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-track" cx="100" cy="100" r="94"/><g id="ring-segs"></g></svg>
+          <div class="plate-inner">
+            <img id="photo" alt="" hidden>
+            <p class="plate-hint" id="plate-hint">Ảnh bữa ăn của bạn<br>sẽ nằm trên đĩa này</p>
+          </div>
+        </div>
+        <figcaption class="status" id="status"></figcaption>
+      </figure>
+    </section>
+
+    <section class="result container" id="result" hidden>
+      <div class="result-head">
+        <div>
+          <p class="total-label">Bữa này khoảng</p>
+          <p class="total"><span id="total">0</span> <small>kcal</small></p>
+          <p class="range" id="range"></p>
+        </div>
+        <div class="day">
+          <p class="day-pct"><span id="pct">0</span>%</p>
+          <p class="day-label">nhu cầu cả ngày của <button class="link" id="profile-btn" type="button" aria-expanded="false" aria-controls="profile"></button></p>
+        </div>
+      </div>
+
+      <form class="profile" id="profile" hidden>
+        <fieldset><legend>Giới tính</legend>
+          <label><input type="radio" name="sex" value="nu" checked> Nữ</label><label><input type="radio" name="sex" value="nam"> Nam</label></fieldset>
+        <fieldset><legend>Tuổi</legend>
+          <label><input type="radio" name="age" value="20-29" checked> 20–29</label><label><input type="radio" name="age" value="30-49"> 30–49</label>
+          <label><input type="radio" name="age" value="50-69"> 50–69</label><label><input type="radio" name="age" value="70+"> 70+</label></fieldset>
+        <fieldset><legend>Mức vận động</legend>
+          <label><input type="radio" name="act" value="0"> Nhẹ</label><label><input type="radio" name="act" value="1" checked> Vừa</label><label><input type="radio" name="act" value="2"> Nặng</label></fieldset>
+      </form>
+
+      <p class="badge-mock" id="mock-note" hidden></p>
+      <ol class="items" id="items"></ol>
+
+      <div class="add">
+        <label for="add-dish">Thêm món còn thiếu</label>
+        <div class="add-row"><select id="add-dish"></select><button class="btn btn-ghost" id="add-btn" type="button">Thêm</button></div>
+      </div>
+
+      <div class="advice" id="advice" aria-live="polite">
+        <h2>Gợi ý cho bữa sau</h2>
+        <ul id="tips"><li class="skeleton"></li><li class="skeleton"></li></ul>
+        <p class="swap" id="swap" hidden></p>
+        <p class="ai-note">Gợi ý do AI viết, chỉ để tham khảo.</p>
+      </div>
+
+      <button class="btn btn-lg btn-wide" id="save" type="button">Lưu vào nhật ký hôm nay</button>
+    </section>
+
+    <section class="log container" id="nhat-ky">
+      <h2>Hôm nay</h2>
+      <div class="log-bar"><div class="log-fill" id="log-fill"></div></div>
+      <p class="log-sum" id="log-sum">Chưa có bữa nào. Chụp bữa đầu tiên ở trên.</p>
+      <ol class="log-list" id="log-list"></ol>
+    </section>
+
+    <section class="how container" id="cach-tinh">
+      <h2>Cách Đĩa Việt tính</h2>
+      <ol class="steps">
+        <li><h3>AI chỉ nhận món</h3><p>Mô hình thị giác chọn món trong danh sách 21 món Việt quen thuộc và ước lượng khẩu phần. Món ngoài danh sách được ghi rõ là “ước tính AI”.</p></li>
+        <li><h3>Calo lấy từ bảng có nguồn</h3><p>Mỗi món có số kcal cho một suất tiêu chuẩn từ bảng của bệnh viện và chuyên gia dinh dưỡng. Khẩu phần nhỏ, vừa, lớn nhân hệ số 0,75 / 1 / 1,3.</p></li>
+        <li><h3>Luôn là một khoảng</h3><p>Ảnh không thấy dầu, đường hay phần nhân bên trong, nên kết quả hiện kèm khoảng dao động 15–25% theo độ tin cậy của nguồn.</p></li>
+      </ol>
+      <details class="table-wrap">
+        <summary>Bảng 21 món và nguồn số liệu</summary>
+        <div class="scroll-x"><table><thead><tr><th scope="col">Món</th><th scope="col">Suất</th><th scope="col" class="num">kcal</th><th scope="col">Nguồn</th></tr></thead><tbody id="dish-table"></tbody></table></div>
+        <p class="fine" id="rda-src"></p>
+      </details>
+      <p class="disclaimer">Thông tin chỉ để tham khảo, không thay cho tư vấn của bác sĩ hay chuyên gia dinh dưỡng. Người có bệnh mạn tính, đang mang thai hoặc cho con bú nên hỏi chuyên gia trước khi thay đổi chế độ ăn. Ảnh của bạn chỉ được gửi đi để nhận diện rồi bỏ, không lưu trên máy chủ.</p>
+    </section>
+  </main>
+
+  <footer class="foot container">
+    <p>Đĩa Việt · bản thử nghiệm của đội luyện thi AI Thực Chiến.</p>
+    <p class="fine" id="credits"></p>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* Token = nguồn sự thật duy nhất (chép từ DESIGN.md). Component chỉ dùng biến semantic, không rải hex. */
+:root {
+  /* Màu: 4–6 màu có tên, MỘT accent. Thay toàn bộ theo hướng thẩm mỹ đã chọn. */
+  --bg: #F4F7F1;
+  --surface: #FFFFFF;
+  --ink: #11261B;
+  --muted: #4A5D51;
+  --line: #D8E2D5;
+  --accent: #D9432B;
+  --accent-ink: #ffffff;
+  --danger: #B42318;
+  --herb: #2F6B4F;
+  --herb-2: #7FA88A;
+  --herb-3: #B9D3BF;
+  --chili-2: #F08A5D;
+
+  /* Font: CHỈ font có subset vietnamese (references/design.md §Font). */
+  --font-display: "Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Be Vietnam Pro", system-ui, sans-serif;
+
+  /* Thang chữ (clamp) — line-height display ≥ 1.15 để không cắt dấu chồng (Ấ, Ượ). */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 1vw, 2.2rem);
+  --step-3: clamp(2.1rem, 1.7rem + 2vw, 3.4rem);
+  --step-4: clamp(2.6rem, 2rem + 3.2vw, 5rem);
+
+  /* Spacing 4px, bo góc một hệ, chuyển động ngắn */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px;
+  --r-sm: 8px; --r-md: 14px; --r-lg: 22px; --r-pill: 999px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --dur: 180ms;
+  --container: 1200px;
+}

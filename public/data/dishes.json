@@ -1,0 +1,417 @@
+{
+ "updated": "2026-10-06",
+ "portion": {
+  "S": 0.75,
+  "M": 1,
+  "L": 1.3
+ },
+ "dishes": [
+  {
+   "id": "pho-bo",
+   "name": "Phở bò",
+   "aliases": [
+    "phở tái",
+    "phở chín",
+    "pho"
+   ],
+   "unit": "tô",
+   "serving": "1 tô vừa",
+   "kcal": 450,
+   "range": [
+    360,
+    540
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "bun-bo-hue",
+   "name": "Bún bò Huế",
+   "aliases": [
+    "bún bò"
+   ],
+   "unit": "tô",
+   "serving": "1 tô vừa",
+   "kcal": 482,
+   "range": [
+    410,
+    554
+   ],
+   "grade": "A",
+   "countable": false,
+   "source": {
+    "name": "VnExpress – TS. Nguyễn Trọng Hưng, Viện Dinh dưỡng Quốc gia",
+    "url": "https://vnexpress.net/luong-calo-trong-mon-an-sang-quen-thuoc-4459676.html"
+   }
+  },
+  {
+   "id": "bun-cha",
+   "name": "Bún chả",
+   "aliases": [
+    "bún chả Hà Nội"
+   ],
+   "unit": "suất",
+   "serving": "1 suất (bún, chả, nước chấm)",
+   "kcal": 500,
+   "range": [
+    400,
+    600
+   ],
+   "grade": "C",
+   "countable": false,
+   "source": {
+    "name": "Tiki Blog – Bún chả bao nhiêu calo",
+    "url": "https://tiki.vn/blog/bun-cha-bao-nhieu-calo/"
+   }
+  },
+  {
+   "id": "com-tam",
+   "name": "Cơm tấm bì chả",
+   "aliases": [
+    "cơm tấm sườn",
+    "cơm sườn"
+   ],
+   "unit": "đĩa",
+   "serving": "1 đĩa",
+   "kcal": 600,
+   "range": [
+    480,
+    720
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "banh-xeo",
+   "name": "Bánh xèo",
+   "aliases": [],
+   "unit": "cái",
+   "serving": "1 cái lớn",
+   "kcal": 517,
+   "range": [
+    388,
+    646
+   ],
+   "grade": "C",
+   "countable": true,
+   "source": {
+    "name": "Báo Sống Khoẻ – Bảng tính calo",
+    "url": "https://baosongkhoe.com/bang-tinh-calo-cac-loai-thuc-an-hang-ngay/"
+   }
+  },
+  {
+   "id": "goi-cuon",
+   "name": "Gỏi cuốn tôm thịt",
+   "aliases": [
+    "nem cuốn",
+    "gỏi cuốn"
+   ],
+   "unit": "cuốn",
+   "serving": "1 cuốn",
+   "kcal": 65,
+   "range": [
+    50,
+    80
+   ],
+   "grade": "C",
+   "countable": true,
+   "source": {
+    "name": "Nhà thuốc Long Châu – Gỏi cuốn bao nhiêu calo",
+    "url": "https://nhathuoclongchau.com.vn/bai-viet/goi-cuon-bao-nhieu-calo-cach-lam-goi-cuon-giam-can-ngon-mieng-69456.html"
+   }
+  },
+  {
+   "id": "xoi-thit",
+   "name": "Xôi thịt",
+   "aliases": [
+    "xôi"
+   ],
+   "unit": "suất",
+   "serving": "1 suất",
+   "kcal": 700,
+   "range": [
+    595,
+    805
+   ],
+   "grade": "A",
+   "countable": false,
+   "source": {
+    "name": "VnExpress – TS. Nguyễn Trọng Hưng, Viện Dinh dưỡng Quốc gia",
+    "url": "https://vnexpress.net/luong-calo-trong-mon-an-sang-quen-thuoc-4459676.html"
+   }
+  },
+  {
+   "id": "xoi-man",
+   "name": "Xôi mặn",
+   "aliases": [],
+   "unit": "hộp",
+   "serving": "1 hộp",
+   "kcal": 500,
+   "range": [
+    400,
+    600
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "banh-mi",
+   "name": "Bánh mì chả lụa",
+   "aliases": [
+    "bánh mì thịt",
+    "bánh mì"
+   ],
+   "unit": "ổ",
+   "serving": "1 ổ",
+   "kcal": 400,
+   "range": [
+    320,
+    480
+   ],
+   "grade": "B",
+   "countable": true,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "bun-rieu",
+   "name": "Bún riêu",
+   "aliases": [
+    "bún riêu cua"
+   ],
+   "unit": "tô",
+   "serving": "1 tô",
+   "kcal": 490,
+   "range": [
+    392,
+    588
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "bun-mam",
+   "name": "Bún mắm",
+   "aliases": [],
+   "unit": "tô",
+   "serving": "1 tô",
+   "kcal": 480,
+   "range": [
+    384,
+    576
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "bun-thit-nuong",
+   "name": "Bún thịt nướng",
+   "aliases": [],
+   "unit": "tô",
+   "serving": "1 tô",
+   "kcal": 451,
+   "range": [
+    361,
+    541
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "hu-tieu",
+   "name": "Hủ tiếu mì",
+   "aliases": [
+    "hủ tiếu"
+   ],
+   "unit": "tô",
+   "serving": "1 tô",
+   "kcal": 410,
+   "range": [
+    328,
+    492
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "hu-tieu-xao",
+   "name": "Hủ tiếu xào",
+   "aliases": [],
+   "unit": "đĩa",
+   "serving": "1 đĩa",
+   "kcal": 646,
+   "range": [
+    517,
+    775
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "chao-long",
+   "name": "Cháo lòng",
+   "aliases": [],
+   "unit": "tô",
+   "serving": "1 tô",
+   "kcal": 412,
+   "range": [
+    330,
+    494
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "banh-bot-loc",
+   "name": "Bánh bột lọc",
+   "aliases": [],
+   "unit": "đĩa",
+   "serving": "1 đĩa",
+   "kcal": 487,
+   "range": [
+    390,
+    584
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "banh-bao",
+   "name": "Bánh bao",
+   "aliases": [],
+   "unit": "cái",
+   "serving": "1 cái",
+   "kcal": 328,
+   "range": [
+    262,
+    394
+   ],
+   "grade": "B",
+   "countable": true,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "com-chien",
+   "name": "Cơm chiên Dương Châu",
+   "aliases": [
+    "cơm rang"
+   ],
+   "unit": "đĩa",
+   "serving": "1 đĩa",
+   "kcal": 530,
+   "range": [
+    424,
+    636
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "com-thit-kho",
+   "name": "Cơm thịt kho tàu",
+   "aliases": [
+    "thịt kho trứng"
+   ],
+   "unit": "phần",
+   "serving": "1 phần",
+   "kcal": 650,
+   "range": [
+    520,
+    780
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "tra-sua",
+   "name": "Trà sữa",
+   "aliases": [
+    "trà sữa trân châu"
+   ],
+   "unit": "ly",
+   "serving": "1 ly 500 ml",
+   "kcal": 608,
+   "range": [
+    486,
+    730
+   ],
+   "grade": "B",
+   "countable": true,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  },
+  {
+   "id": "banh-trang-tron",
+   "name": "Bánh tráng trộn",
+   "aliases": [],
+   "unit": "bịch",
+   "serving": "200 g",
+   "kcal": 600,
+   "range": [
+    480,
+    720
+   ],
+   "grade": "B",
+   "countable": false,
+   "source": {
+    "name": "Bảng calo thức ăn – Bệnh viện Hoàn Mỹ",
+    "url": "https://hoanmy.com/bang-calo-thuc-an/"
+   }
+  }
+ ]
+}
