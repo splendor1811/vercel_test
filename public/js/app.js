@@ -41,6 +41,13 @@ const round10 = (x) => Math.round(x / 10) * 10;
 
 // ---------- giao diện ----------
 function setStatus(text, err = false) { const s = $('#status'); s.textContent = text; s.classList.toggle('error', err); }
+function setStep(n) { // 1..3 đang chạy, 4 = xong, 0 = ẩn
+  document.querySelectorAll('#progress li').forEach((li) => {
+    const k = Number(li.dataset.step);
+    li.classList.toggle('now', k === n);
+    li.classList.toggle('done', k < n);
+  });
+}
 
 function drawRing() {
   const g = $('#ring-segs');
@@ -83,6 +90,8 @@ function renderTotals() {
   const t = totals();
   const p = profile();
   countUp($('#total'), round10(t.mid));
+  $('#plate-total').hidden = !items.length;
+  countUp($('#plate-kcal'), round10(t.mid));
   $('#range').textContent = items.length ? `dao động ${fmt.format(round10(t.lo))}–${fmt.format(round10(t.hi))} kcal` : 'Chưa có món nào';
   countUp($('#pct'), Math.round((t.mid / p.need) * 100));
   $('#profile-btn').textContent = `${p.sex === 'nu' ? 'nữ' : 'nam'} ${p.age} tuổi, vận động ${['nhẹ', 'vừa', 'nặng'][p.act]} (${fmt.format(p.need)} kcal)`;
@@ -158,18 +167,20 @@ async function analyze(source) {
   stage.dataset.state = 'busy';
   $('#ring-segs').innerHTML = '';
   $('#plate-hint').hidden = true;
+  $('#plate-total').hidden = true;
+  stopDemo();
   const img = $('#photo');
   img.hidden = false;
   img.alt = source.name ? `Ảnh mẫu: ${source.name}` : 'Ảnh bữa ăn bạn vừa chọn';
   img.src = source.preview;
   showMock('');
   try {
-    setStatus('Đang thu nhỏ ảnh…');
+    setStep(1); setStatus('Đang thu nhỏ ảnh…');
     const dataUrl = source.file ? await compressImage(source.file) : await urlToDataUrl(source.preview);
-    setStatus('Đang nhận diện món…');
+    setStep(2); setStatus('Đang nhận diện món…');
     const list = DB.dishes.map((d) => `${d.id}: ${d.name}`).join('\n');
     const r = await askJSON('meal', { input: `Danh sách món:\n${list}`, image: dataUrl }, { timeoutMs: 45_000 });
-    setStatus('Đang tra bảng dinh dưỡng…');
+    setStep(3); setStatus('Đang tra bảng dinh dưỡng…');
     let data = r.data;
     if (r.mock) {
       if (source.key && PRESETS[source.key]) {
@@ -186,9 +197,11 @@ async function analyze(source) {
     $('#result').hidden = false;
     if (!items.length && !r.mock) setStatus(data?.note || 'Không thấy món ăn trong ảnh. Thử chụp từ trên xuống, đủ sáng, thấy cả tô/đĩa.', true);
     else setStatus(items.length ? `Nhận ra ${items.length} món${data?.note ? ' · ' + data.note : ''}` : '');
+    setStep(4);
     update();
     if (items.length) $('#result').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   } catch (e) {
+    setStep(0);
     setStatus(e.message, true);
   } finally {
     stage.dataset.state = 'done';
@@ -200,6 +213,23 @@ async function urlToDataUrl(url) {
   const blob = await (await fetch(url)).blob();
   return compressImage(new File([blob], 'mau.jpg', { type: blob.type || 'image/jpeg' }));
 }
+
+// ---------- đĩa tự trình diễn ảnh mẫu khi chưa có ảnh ----------
+let demoIdx = 0, demoTimer = null;
+function startDemo() {
+  const box = $('#demo');
+  box.innerHTML = SAMPLES.map((s, i) => `<img src="${s.src}" alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'} class="${i ? '' : 'on'}">`).join('');
+  $('#demo-name').textContent = SAMPLES[0].name;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  demoTimer = setInterval(() => {
+    const imgs = box.querySelectorAll('img');
+    imgs[demoIdx].classList.remove('on');
+    demoIdx = (demoIdx + 1) % SAMPLES.length;
+    imgs[demoIdx].classList.add('on');
+    $('#demo-name').textContent = SAMPLES[demoIdx].name;
+  }, 2600);
+}
+function stopDemo() { clearInterval(demoTimer); demoTimer = null; }
 
 // ---------- nhật ký hôm nay (localStorage, không gửi đi đâu) ----------
 const today = () => new Date().toISOString().slice(0, 10);
@@ -229,6 +259,9 @@ async function init() {
     });
     ul.appendChild(li);
   });
+
+  startDemo();
+  $('#try').addEventListener('click', () => ul.querySelectorAll('button')[demoIdx].click());
 
   $('#file').addEventListener('change', (e) => {
     const f = e.target.files?.[0];

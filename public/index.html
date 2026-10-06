@@ -26,7 +26,7 @@
   <main>
     <section class="hero container" id="cong-cu">
       <div class="hero-copy">
-        <h1>Chụp món Việt,<br>biết ngay calo.</h1>
+        <h1>Chụp món Việt,<br>biết ngay <span class="mark">calo<svg viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 45 5, 90 21, 135 11 S 185 9, 197 13"/></svg></span>.</h1>
         <p class="lead">AI nhận món trong ảnh, còn số calo tính theo bảng dinh dưỡng có nguồn. Món nào sai thì sửa ngay.</p>
 
         <div class="actions">
@@ -42,13 +42,23 @@
       </div>
 
       <figure class="stage" id="stage" data-state="idle" aria-live="polite">
+        <svg class="deco deco-leaf1" viewBox="0 0 60 90" aria-hidden="true"><path d="M30 4 C 55 25, 55 60, 30 86 C 5 60, 5 25, 30 4 Z" /><path class="vein" d="M30 10 L30 82" /></svg>
+        <svg class="deco deco-leaf2" viewBox="0 0 60 90" aria-hidden="true"><path d="M30 4 C 55 25, 55 60, 30 86 C 5 60, 5 25, 30 4 Z" /><path class="vein" d="M30 10 L30 82" /></svg>
+        <svg class="deco deco-chili" viewBox="0 0 120 50" aria-hidden="true"><path d="M8 30 C 30 48, 80 46, 108 18 C 96 34, 50 36, 14 22 Z" /><path class="stem" d="M108 18 C 112 10, 116 8, 118 4" /></svg>
+        <svg class="deco deco-anise" viewBox="0 0 80 80" aria-hidden="true"><g><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(0 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(90 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(135 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(180 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(225 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(270 40 40)"/><ellipse cx="40" cy="20" rx="8" ry="18" transform="rotate(315 40 40)"/></g><circle cx="40" cy="40" r="5" class="core"/></svg>
         <div class="plate">
           <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-track" cx="100" cy="100" r="94"/><g id="ring-segs"></g></svg>
           <div class="plate-inner">
             <img id="photo" alt="" hidden>
-            <p class="plate-hint" id="plate-hint">Ảnh bữa ăn của bạn<br>sẽ nằm trên đĩa này</p>
+            <div class="demo" id="demo" aria-hidden="true"></div>
+            <div class="scan" aria-hidden="true"></div>
+            <p class="plate-hint" id="plate-hint"><button type="button" class="try" id="try">Chạm để thử <span id="demo-name">Phở bò</span></button></p>
+            <p class="plate-total" id="plate-total" hidden><strong id="plate-kcal">0</strong> kcal</p>
           </div>
         </div>
+        <ol class="progress" id="progress" aria-hidden="true">
+          <li data-step="1">Thu nhỏ ảnh</li><li data-step="2">Nhận diện món</li><li data-step="3">Tra bảng dinh dưỡng</li>
+        </ol>
         <figcaption class="status" id="status"></figcaption>
       </figure>
     </section>
